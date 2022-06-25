@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("../middleware/auth");
 
-const User = require("../model/User");
+const User = require("../model/user");
 
 /**
  * @method - POST
@@ -14,38 +14,59 @@ const User = require("../model/User");
  */
 
 router.post(
-  "/signup",
+  "/register", auth,
   [
-    check("username", "Please Enter a Valid Username")
+    check("name", "Please Enter a Valid Name")
       .not()
       .isEmpty(),
     check("email", "Please enter a valid email").isEmail(),
-    check("password", "Please enter a valid password").isLength({
-      min: 6
-    })
+    check("mobile", "Please Enter a Valid Mobile").isMobilePhone(),
+    check("password", "Please enter a valid password").isLength({min: 6})
   ],
   async (req, res) => {
+
+    // console.log("AAAAAAAAAAAAAAAAAAAAAAA--------------"); 
+    // console.log(req);
+    // console.log("----------------AAAAAAAAAAAAAAAAAAAAAAA"); 
+
+
+
     const errors = validationResult(req);
+
+    // console.log("BBBBBBBBBBBBB--------------"); 
+    // console.log(errors);
+    // console.log("----------------BBBBBBBBBBBBB"); 
+
+
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array()
       });
     }
 
-    const { username, email, password } = req.body;
+    const { name, email, mobile, password } = req.body;
     try {
-      let user = await User.findOne({
-        email
-      });
+      let user = await User.findOne({$or: [{email: email},{mobile: mobile}, ],});
       if (user) {
+
+        if(user.email==email && user.mobile == mobile) {
+          var myuser = "Email and Mobile";
+        } else  if (user.email==email) {
+          var myuser = "Email";
+        } else if(user.mobile == mobile) {
+          var myuser = "Mobile";
+        }
+
+
         return res.status(400).json({
-          msg: "User Already Exists"
+          msg: myuser+" Already Exists",user
         });
       }
 
       user = new User({
-        username,
+        name,
         email,
+        mobile,
         password
       });
 
@@ -69,7 +90,7 @@ router.post(
         (err, token) => {
           if (err) throw err;
           res.status(200).json({
-            token
+            token,user
           });
         }
       );
@@ -83,6 +104,7 @@ router.post(
 router.post(
   "/login",
   [
+  //  check("mobile", "Please enter a valid mobile").isMobilePhone(),
     check("email", "Please enter a valid email").isEmail(),
     check("password", "Please enter a valid password").isLength({
       min: 6
@@ -97,7 +119,7 @@ router.post(
       });
     }
 
-    const { email, password } = req.body;
+    const { email, mobile, password } = req.body;
     try {
       let user = await User.findOne({
         email
@@ -128,7 +150,7 @@ router.post(
         (err, token) => {
           if (err) throw err;
           res.status(200).json({
-            token
+            token,user
           });
         }
       );
@@ -147,7 +169,7 @@ router.post(
  * @param - /user/me
  */
 
-router.get("/me", auth, async (req, res) => {
+router.get("/profile", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
     const user = await User.findById(req.user.id);
