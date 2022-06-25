@@ -566,7 +566,7 @@ If you face in problem in running this application, let me know in the comments.
 
 I write about new stuff almost daily. Please follow me on [Twitter](https://twitter.com/diipakkr) | [Instagram](https://instagram.com/diipakkr)
 
-If you liked the content, Give a star on repo. And, like the post. 
+If you liked the content, Give a star on repo. And, like the post . 
 
 **First Published At** : 
 

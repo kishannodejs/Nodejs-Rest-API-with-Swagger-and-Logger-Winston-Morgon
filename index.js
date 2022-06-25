@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
  * Router - /user/*
  * Method - *
  */
+
 app.use("/user", user);
 
 app.listen(PORT, (req, res) => {
