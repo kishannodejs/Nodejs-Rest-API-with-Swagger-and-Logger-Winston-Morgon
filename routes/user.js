@@ -2,15 +2,16 @@ const express = require("express");
 const { check, validationResult } = require("express-validator/check");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const jwt_decode = require('jwt-decode');
 const router = express.Router();
 const auth = require("../middleware/auth");
-
 const User = require("../model/user");
+var commonfunc = require('../commonfunction.js');
 
 /**
  * @method - POST
- * @param - /signup
- * @description - User SignUp
+ * @param - /register
+ * @description - User register
  */
 
 router.post(
@@ -25,20 +26,9 @@ router.post(
   ],
   async (req, res) => {
 
-    // console.log("AAAAAAAAAAAAAAAAAAAAAAA--------------"); 
-    // console.log(req);
-    // console.log("----------------AAAAAAAAAAAAAAAAAAAAAAA"); 
+     const errors = validationResult(req);
 
-
-
-    const errors = validationResult(req);
-
-    // console.log("BBBBBBBBBBBBB--------------"); 
-    // console.log(errors);
-    // console.log("----------------BBBBBBBBBBBBB"); 
-
-
-    if (!errors.isEmpty()) {
+   if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array()
       });
@@ -46,6 +36,20 @@ router.post(
 
     const { name, email, mobile, password } = req.body;
     try {
+
+      const token = req.header("token");
+      const decoded = jwt_decode(token);
+      const chkuser =  await User.findById(decoded.user.id);
+      
+      if(req.url=='/register' && chkuser.role!=1){
+        console.log("Not Authorized");
+        return res.status(400).json({
+          msg: " Only Admin can Create User"
+        });
+      }
+
+
+
       let user = await User.findOne({$or: [{email: email},{mobile: mobile}, ],});
       if (user) {
 
@@ -81,19 +85,26 @@ router.post(
         }
       };
 
-      jwt.sign(
-        payload,
-        "randomString",
-        {
-          expiresIn: 10000
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.status(200).json({
-            token,user
-          });
-        }
-      );
+
+      res.status(200).json({
+              user
+            });
+
+      // jwt.sign(
+      //   payload,
+      //   process.env.JWTSECRET,
+      //   {
+      //     expiresIn: 100000
+      //   },
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     res.status(200).json({
+      //       token,user
+      //     });
+      //   }
+      // );
+
+
     } catch (err) {
       console.log(err.message);
       res.status(500).send("Error in Saving");
@@ -143,9 +154,9 @@ router.post(
 
       jwt.sign(
         payload,
-        "randomString",
+        process.env.JWTSECRET,
         {
-          expiresIn: 3600
+          expiresIn: 3600*24
         },
         (err, token) => {
           if (err) throw err;
@@ -166,13 +177,25 @@ router.post(
 /**
  * @method - POST
  * @description - Get LoggedIn User
- * @param - /user/me
+ * @param - /user/profile
  */
 
 router.get("/profile", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
     const user = await User.findById(req.user.id);
+    console.log(user)
+    res.json(user);
+  } catch (e) {
+    res.send({ message: "Error in Fetching user" });
+  }
+});
+
+router.get("/list", [ commonfunc.isAdminAuthenticated], async (req, res) => {
+  try {
+    // request.user is getting fetched from Middleware after token authentication
+    const user = await User.find();
+    console.log(user)
     res.json(user);
   } catch (e) {
     res.send({ message: "Error in Fetching user" });

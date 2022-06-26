@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Replace this with your MONGOURI.
-const MONGOURI = "mongodb://localhost/Rest-API-kishan-kumar-16062022";
+const MONGOURI = process.env.MONGOURL;
 
 const InitiateMongoServer = async () => {
   try {
