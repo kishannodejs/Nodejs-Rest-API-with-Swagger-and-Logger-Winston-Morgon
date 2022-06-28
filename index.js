@@ -127,6 +127,29 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  */
 
 
+/**
+ * @swagger
+ * /checklist:
+ *   post:
+ *     parameters:
+ *      - in: body
+ *        name: catchphrase
+ *        description: New catchphrase
+ *        schema:
+ *          type: object
+ *          properties:
+ *            cooler:
+ *              type: number
+ *            category:
+ *              type: number
+ *            order_number:
+ *              type: string
+ * 
+ *     responses:
+ *       200:
+ *         description: Login Succesfully
+ */
+
 // Routes
 /**
  * @swagger
