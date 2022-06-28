@@ -3,23 +3,23 @@
     "$oid": "62ba937e62f0b0c29e84f670"
   },
   "name": "Admin",
-  "role_type": "1"
+  "roletype": "1"
 },{
   "_id": {
     "$oid": "62ba93a162f0b0c29e84f671"
   },
   "name": "Procurement Manager",
-  "role_type": "2"
+  "roletype": "2"
 },{
   "_id": {
     "$oid": "62ba93c962f0b0c29e84f672"
   },
-  "role_type": "3",
-  "name": "Inspection Manager"
+  "name": "Inspection Manager",
+  "roletype": "3"
 },{
   "_id": {
     "$oid": "62ba93e862f0b0c29e84f673"
   },
   "name": "Client",
-  "role_type": "4"
+  "roletype": "4"
 }]
