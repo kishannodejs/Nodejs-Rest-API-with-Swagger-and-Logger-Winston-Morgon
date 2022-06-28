@@ -1,0 +1,89 @@
+[{
+  "_id": {
+    "$oid": "62ba916e2c6a58c768f938bc"
+  },
+  "name": "admin",
+  "email": "admin@gmail.com",
+  "mobile": {
+    "$numberLong": "8787878787"
+  },
+  "password": "$2a$10$oDhyCNnWOlE/NdIm9PT6uu0c1I6YzgttfLaxcJWJeZ01roKMVj/tC",
+  "role": 1,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656394094259"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656394094259"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ba95f9b666916b5e5329e3"
+  },
+  "name": "client",
+  "email": "client@gmail.com",
+  "mobile": {
+    "$numberLong": "8181818181"
+  },
+  "password": "$2a$10$n4tNJJxRTYoyoi8aV5HVrupFh0PU8MDvmOGXvUi5qjMzJRc2QGJX.",
+  "role": 4,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656395257152"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656396072505"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ba961eb666916b5e5329e9"
+  },
+  "name": "procurement",
+  "email": "procurement@gmail.com",
+  "mobile": {
+    "$numberLong": "8383838383"
+  },
+  "password": "$2a$10$h/tMpgtMWVOaoGMk9C6CC.77LJn91qMqZpl3wTkLwuatvAbmmDTPS",
+  "role": 2,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656395294599"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656395294599"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ba9634b666916b5e5329ed"
+  },
+  "name": "Inspection",
+  "email": "inspection@gmail.com",
+  "mobile": {
+    "$numberLong": "8484848484"
+  },
+  "password": "$2a$10$onWBISNWB9NiaAjbgqVage0wL2OwVX3KG7SYK2/H/V8pqsVhrAjHW",
+  "role": 3,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1656395316597"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1656395316597"
+    }
+  },
+  "__v": 0
+}]

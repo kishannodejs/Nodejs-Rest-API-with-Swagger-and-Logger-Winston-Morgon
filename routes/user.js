@@ -6,6 +6,7 @@ const jwt_decode = require('jwt-decode');
 const router = express.Router();
 const auth = require("../middleware/auth");
 const User = require("../model/user");
+const Role = require("../model/role");
 var commonfunc = require('../commonfunction.js');
 
 /**
@@ -132,6 +133,7 @@ router.post(
 
     const { email, mobile, password } = req.body;
     try {
+      let role = await Role.find();
       let user = await User.findOne({
         email
       });
@@ -161,7 +163,7 @@ router.post(
         (err, token) => {
           if (err) throw err;
           res.status(200).json({
-            token,user
+            token,user,role
           });
         }
       );
@@ -184,6 +186,24 @@ router.get("/profile", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
     const user = await User.findById(req.user.id);
+    console.log(user)
+    res.json(user);
+  } catch (e) {
+    res.send({ message: "Error in Fetching user" });
+  }
+});
+
+
+router.post("/edit/:id", auth, async (req, res) => {
+  try {
+    // request.user is getting fetched from Middleware after token authentication
+    const user =  await User.findOneAndUpdate({
+      _id: req.params.id,
+  },
+  {   
+      role:req.body.role
+  }
+  )
     console.log(user)
     res.json(user);
   } catch (e) {

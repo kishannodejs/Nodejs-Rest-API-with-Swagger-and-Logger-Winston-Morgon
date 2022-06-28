@@ -16,7 +16,7 @@ module.exports = {
     next();
   } catch (e) {
     console.error(e);
-    res.status(500).send({ message: "Invalid Token 222222222222" });
+    res.status(500).send({ message: "Invalid Token" });
   }
 		const decoded = jwt_decode(token);
 
@@ -42,7 +42,7 @@ if(myuser.role!=1){
     next();
   } catch (e) {
     console.error(e);
-    res.status(500).send({ message: "Invalid Token 33333333333" });
+    res.status(500).send({ message: "Invalid Token" });
   }
 		const decoded = jwt_decode(token);
 
@@ -57,48 +57,58 @@ if(myuser.role!=1 && myuser.role!=4){
 	},
 
 
+	isInspectionAuthenticated: async function (req, res, next) {
 
-	// isAuthenticated: function (req, res, next) {
-	// 	session = req.session;
+		const token = await req.header("token");
 
-	
-	// 	var role = session.role;
-	// 	if (role == 1 || role == 2 || role == 3 || role == 4)
-	// 	return next();
-	// 	res.redirect('/users/login');
-	// },
+		if (!token) return res.status(401).json({ message: "Auth Error" }); 
 
-	// isClientAuthenticated: function (req, res, next) {
-	// 	session = req.session;
+  try {
+    const decoded = jwt.verify(token, process.env.JWTSECRET);
+    req.user = decoded.user;
+    next();
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ message: "Invalid Token" });
+  }
+		const decoded = jwt_decode(token);
 
-	
-	// 	var role = session.role;
-	// 	if (role == 4)
-	// 	return next();
-	// 	res.redirect('/users/login');
-	// },
+const myuser =  await User.findById(decoded.user.id);
 
-	// isAuthenticatedbutnotInspection: function (req, res, next) {
-	// 	session = req.session;
-
-	
-	// 	var role = session.role;
-	// 	if (role == 1 || role == 2 || role == 4)
-	// 	return next();
-	// 	res.redirect('/users/login');
-	// },
+if(myuser.role!=1 && myuser.role!=3){
+	console.log("Not Authorized");
+	return res.status(400).json({
+	  msg: "Admin or Inspection Manager Can create Order"
+	});
+  }  
+	},
 
 
-	// isAdminClientAuthenticated: function (req, res, next) {
-	// 	session = req.session;
+	isProcurementAuthenticated: async function (req, res, next) {
 
-	
-	// 	var role = session.role;
-	// 	if (role == 1 || role == 4)
-	// 	return next();
-	// 	res.redirect('/users/login');
-	// },
+		const token = await req.header("token");
 
+		if (!token) return res.status(401).json({ message: "Auth Error" }); 
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWTSECRET);
+    req.user = decoded.user;
+    next();
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ message: "Invalid Token" });
+  }
+		const decoded = jwt_decode(token);
+
+const myuser =  await User.findById(decoded.user.id);
+
+if(myuser.role!=1 && myuser.role!=2){
+	console.log("Not Authorized");
+	return res.status(400).json({
+	  msg: "Admin or Procurement have Permission"
+	});
+  }  
+	},
 
 	encrypt: function (text) {
 		var cipher = crypto.createCipher('aes-256-cbc','d6F3Efeq')

@@ -34,11 +34,19 @@ const upload = multer({
   },
 });
 
-router.post("/", auth, upload.single('order_file'),  async (req, res) => {
+router.post("/", commonfunc.isInspectionAuthenticated,
+[
+  check("cooler", "Please Enter a Cooler")
+  .not()
+  .isEmpty(),
+  check("order_file", "Please Attach file").notEmpty()
+
+], upload.single('order_file'),  async (req, res) => {
+
 console.log("AAAAAAAAAAAA");
 console.log(req.file)
 console.log("AAAAAAAAAAAA");
-  console.log(req);
+
 
   
 
@@ -90,7 +98,7 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
-router.post("/:id", commonfunc.isClientAuthenticated, upload.single('order_file'), async (req, res) => {
+router.post("/:id", commonfunc.isInspectionAuthenticated, upload.single('order_file'), async (req, res) => {
 
   const {cooler, category, licence, driver_number, vehicle_rc, order_number, order_file} = req.body;
 

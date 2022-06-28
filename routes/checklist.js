@@ -34,7 +34,7 @@ const upload = multer({
   },
 });
 
-router.post("/", auth, upload.single('order_file'),  async (req, res) => {
+router.post("/",commonfunc.isClientAuthenticated, upload.single('order_file'),  async (req, res) => {
 console.log("AAAAAAAAAAAA");
 console.log(req.file)
 console.log("AAAAAAAAAAAA");
@@ -88,9 +88,9 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
-router.post("/:id", commonfunc.isClientAuthenticated, upload.single('order_file'), async (req, res) => {
+router.post("/:id", commonfunc.isProcurementAuthenticated, upload.single('order_file'), async (req, res) => {
 
-  const {cooler, category, licence, driver_number, vehicle_rc, order_number, order_file} = req.body;
+  const {cooler, category, licence, driver_number, vehicle_rc, order_number, status, order_file} = req.body;
 
   try{   
     await Checklist.findOneAndUpdate({
@@ -103,6 +103,7 @@ router.post("/:id", commonfunc.isClientAuthenticated, upload.single('order_file'
         driver_number: driver_number,
         vehicle_rc : vehicle_rc,
         order_number:order_number,
+        status:status,
         image_path:req.file.filename
     }
     )   

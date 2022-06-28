@@ -30,7 +30,6 @@ order_number :{
 },
 status: {
     type: Number,
-    required: true,
     default: 5, 
     enum: [1,2,3,4,5]
 },

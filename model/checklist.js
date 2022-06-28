@@ -25,6 +25,11 @@ order_number :{
     type  : String,
     required : true
 },
+status: {
+    type: Number,
+    default: 5, 
+    enum: [1,2,3,4,5]
+},
 date :{
     type : Date,
     default : Date.now
