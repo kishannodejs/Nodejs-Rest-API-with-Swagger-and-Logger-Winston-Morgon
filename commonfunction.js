@@ -5,7 +5,9 @@ const jwt_decode = require('jwt-decode');
 const User = require("./model/user");
 module.exports = {
 	isAdminAuthenticated: async function (req, res, next) {
-
+		console.log("PPPPPPPPPPPPPPPP");
+		console.log( req.header);
+		console.log("PPPPPPPPPPPPPPPP");
 		const token = await req.header("token");
 
 		if (!token) return res.status(401).json({ message: "Auth Error" }); 
@@ -31,6 +33,10 @@ if(myuser.role!=1){
 	},
 
 	isClientAuthenticated: async function (req, res, next) {
+
+		console.log("qqqqqqq");
+		console.log( req.header);
+		console.log("qqqqqqqqqqqqqq");
 
 		const token = await req.header("token");
 
@@ -59,6 +65,11 @@ if(myuser.role!=1 && myuser.role!=4){
 
 	isInspectionAuthenticated: async function (req, res, next) {
 
+
+		console.log("rrrrrrrrrr");
+		console.log( req.header);
+		console.log("rrrrrrrrrrrr");
+
 		const token = await req.header("token");
 
 		if (!token) return res.status(401).json({ message: "Auth Error" }); 
@@ -85,6 +96,10 @@ if(myuser.role!=1 && myuser.role!=3){
 
 
 	isProcurementAuthenticated: async function (req, res, next) {
+
+		console.log("sssssssssss");
+		console.log( req.header);
+		console.log("sssssssssssss");
 
 		const token = await req.header("token");
 

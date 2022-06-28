@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "c3ef29ca-59c9-4ddc-bc93-08f44b023b38",
+		"name": "Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"inspection@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Inspection\",\r\n    \"mobile\":\"8484848484\",\r\n    \"email\":\"inspection@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/user/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/user/list",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"role\":4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/edit/62ba95f9b666916b5e5329e3",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"edit",
+						"62ba95f9b666916b5e5329e3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Checklist",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/checklist/list",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"checklist",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sibgle Checklist",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/checklist/62b448b0aebf2ad5b68b2031",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"checklist",
+						"62b448b0aebf2ad5b68b2031"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Checklist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "order_file",
+							"type": "file",
+							"src": "/C:/Users/NeoSoft/Downloads/goods.jpg"
+						},
+						{
+							"key": "cooler",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "category",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "order_number",
+							"value": "62ba95f9b666916b5e5329e3",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/checklist/",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"checklist",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Checklist",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTk2MzRiNjY2OTE2YjVlNTMyOWVkIn0sImlhdCI6MTY1NjQwMjE1NCwiZXhwIjoxNjU2NDg4NTU0fQ.KbgdAIYQcWHkfsGJ-9tq5IGKETBRYZi_vEZHdg-Ca6Q",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "order_file",
+							"type": "file",
+							"src": "/C:/Users/NeoSoft/Downloads/goods.jpg"
+						},
+						{
+							"key": "cooler",
+							"value": "4",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/checklist/62b448b0aebf2ad5b68b2031",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"checklist",
+						"62b448b0aebf2ad5b68b2031"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Order",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/order/list",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"order",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Order",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTkxNmUyYzZhNThjNzY4ZjkzOGJjIn0sImlhdCI6MTY1NjM5NDI4OCwiZXhwIjoxNjU2NDgwNjg4fQ.V9UPDCUoJeIkKc5GHp0kGnVeGR7J56gQcbJN2_WJX_g",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/order/62b448b0aebf2ad5b68b2031",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"order",
+						"62b448b0aebf2ad5b68b2031"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTk1ZjliNjY2OTE2YjVlNTMyOWUzIn0sImlhdCI6MTY1NjM5OTg4OSwiZXhwIjoxNjU2NDg2Mjg5fQ.o_RsEr-rfB9rYiSCypqDwXLo-njca1fOTDrWOntdkX8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "order_file",
+							"type": "file",
+							"src": "/C:/Users/NeoSoft/Downloads/goods.jpg"
+						},
+						{
+							"key": "cooler",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "category",
+							"value": "11",
+							"type": "default"
+						},
+						{
+							"key": "order_number",
+							"value": "62ba95f9b666916b5e5329e3",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/order/",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"order",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjJiYTk1ZjliNjY2OTE2YjVlNTMyOWUzIn0sImlhdCI6MTY1NjM5OTg4OSwiZXhwIjoxNjU2NDg2Mjg5fQ.o_RsEr-rfB9rYiSCypqDwXLo-njca1fOTDrWOntdkX8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "order_file",
+							"type": "file",
+							"src": "/C:/Users/NeoSoft/Downloads/goods.jpg"
+						},
+						{
+							"key": "cooler",
+							"value": "7",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/order/62b448b0aebf2ad5b68b2031",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"order",
+						"62b448b0aebf2ad5b68b2031"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

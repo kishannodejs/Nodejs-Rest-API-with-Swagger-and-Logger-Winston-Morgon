@@ -98,7 +98,7 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
-router.post("/:id", commonfunc.isInspectionAuthenticated, upload.single('order_file'), async (req, res) => {
+router.put("/:id", commonfunc.isInspectionAuthenticated, upload.single('order_file'), async (req, res) => {
 
   const {cooler, category, licence, driver_number, vehicle_rc, order_number, order_file} = req.body;
 

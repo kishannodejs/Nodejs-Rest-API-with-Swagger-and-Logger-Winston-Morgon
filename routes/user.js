@@ -194,14 +194,32 @@ router.get("/profile", auth, async (req, res) => {
 });
 
 
-router.post("/edit/:id", auth, async (req, res) => {
+router.put("/edit/:id",
+[
+  check("role", "Please Enter a Role")
+    .not()
+    .isEmpty()
+], auth, async (req, res) => {
+
+  
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+     return res.status(400).json({
+       errors: errors.array()
+     });
+   }
+
+   const { role } = req.body;
+
+console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",role)
   try {
     // request.user is getting fetched from Middleware after token authentication
     const user =  await User.findOneAndUpdate({
       _id: req.params.id,
   },
   {   
-      role:req.body.role
+      role:role
   }
   )
     console.log(user)
