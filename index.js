@@ -129,25 +129,29 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 /**
  * @swagger
+ *
  * /checklist:
- *   post:
- *     parameters:
- *      - in: body
- *        name: catchphrase
- *        description: New catchphrase
- *        schema:
- *          type: object
- *          properties:
- *            cooler:
- *              type: number
- *            category:
- *              type: number
- *            order_number:
- *              type: string
- * 
- *     responses:
- *       200:
- *         description: Login Succesfully
+ *  post:
+ *    summary: upload checklist
+ *    operationId: uploadchecklist
+ *    requestBody:
+ *      content:
+ *        multipart/form-data:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              fileName:
+ *                type: string
+ *                format: binary    
+ *              cooler:
+ *                type: file
+ *              category:
+ *                type: number
+ *              order_number:
+ *                type: string
+ *    responses:
+ *      '200':
+ *        description: Successful operation
  */
 
 // Routes

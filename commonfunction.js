@@ -35,7 +35,9 @@ if(myuser.role!=1){
 	isClientAuthenticated: async function (req, res, next) {
 
 		console.log("qqqqqqq");
-		console.log( req.header);
+		console.log( req);
+		console.log( req.body);
+		console.log( req.file);
 		console.log("qqqqqqqqqqqqqq");
 
 		const token = await req.header("token");
