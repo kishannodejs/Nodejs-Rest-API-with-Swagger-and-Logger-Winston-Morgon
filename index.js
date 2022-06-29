@@ -247,7 +247,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *        type: string
  *        description: The User ID.
  *      - in: body
- *        name: ttttttttttttttt
+ *        name: kkkkk
  *        description: Update user
  *        schema:
  *          type: object
