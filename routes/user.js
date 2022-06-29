@@ -8,6 +8,7 @@ const auth = require("../middleware/auth");
 const User = require("../model/user");
 const Role = require("../model/role");
 var commonfunc = require('../commonfunction.js');
+const winston = require('../config/winston');
 
 /**
  * @method - POST
@@ -162,6 +163,8 @@ router.post(
         },
         (err, token) => {
           if (err) throw err;
+          winston.info('Testing for Winston');
+          winston.debug(req.body);
           res.status(200).json({
             token,user,role
           });

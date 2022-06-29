@@ -7,6 +7,7 @@ const user = require("./routes/user");
 const checklist = require("./routes/checklist");
 const order = require("./routes/order");
 const InitiateMongoServer = require("./config/db");
+const winston = require('./config/winston');
 
 // Initiate Mongo Server
 InitiateMongoServer();
@@ -275,6 +276,13 @@ app.get("/", (req, res) => {
 app.use("/user", user);
 app.use("/checklist", checklist);
 app.use("/order", order);
+
+
+app.use((err, req, res, next) => {
+  winston.error('Internal Server Error');
+  res.status(500).send('500. Internal Server Error');
+  next();
+});
 
 app.listen(PORT, (req, res) => {
   console.log(`Server Started at PORT ${PORT}`);
